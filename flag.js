@@ -10,7 +10,7 @@ app.get('/', (req, res) => {
 app.post('/receive_token', (req, res) => {
   console.log('Received token:', req.body.token);
   // Here you can also save the token or perform further actions
-  res.status(200).send('Token received');
+    res.status(200).send(req.body.token);
 });
 
 app.listen(3000, () => {
